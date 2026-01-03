@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductGrid from './components/ProductGrid';
@@ -11,6 +11,12 @@ import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
 import Checkout from './components/Checkout';
 import Footer from './components/Footer';
+import AboutPage from './components/AboutPage';
+import ContactPage from './components/ContactPage';
+import TermsPage from './components/TermsPage';
+import PrivacyPage from './components/PrivacyPage';
+import FAQPage from './components/FAQPage';
+import HowItWorksPage from './components/HowItWorksPage';
 import { PAPERS } from './constants';
 import { Paper, ViewState } from './types';
 
@@ -104,12 +110,24 @@ const App: React.FC = () => {
 
   // --- Actions ---
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    if (targetId === 'submit') {
-      setViewState({ type: 'submit' });
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement> | null, targetId: string) => {
+    if (e) e.preventDefault();
+
+    // Handle page navigation
+    const pageRoutes: Record<string, ViewState['type']> = {
+      'submit': 'submit',
+      'about': 'about',
+      'contact': 'contact',
+      'terms': 'terms',
+      'privacy': 'privacy',
+      'faq': 'faq',
+      'how-it-works': 'how-it-works'
+    };
+
+    if (targetId in pageRoutes) {
+      setViewState({ type: pageRoutes[targetId] as any });
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (targetId === '') {
+    } else if (targetId === '' || targetId === 'home') {
         setViewState({ type: 'home' });
         setActiveCategory('Front Page');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -126,6 +144,11 @@ const App: React.FC = () => {
       }, 100);
     }
   };
+
+  // Simplified navigation for page components
+  const navigateToPage = useCallback((page: string) => {
+    handleNavClick(null, page);
+  }, []);
 
   const handleCategoryClick = (category: string) => {
       setViewState({ type: 'home' });
@@ -249,10 +272,10 @@ const App: React.FC = () => {
         onItemClick={handlePaperClick}
       />
 
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow" role="main">
         {viewState.type === 'home' && (
           <>
-            <Hero />
+            <Hero onCategoryClick={handleCategoryClick} />
             <ProductGrid 
                 papers={sortedPapers} 
                 onProductClick={handlePaperClick} 
@@ -313,14 +336,55 @@ const App: React.FC = () => {
         )}
 
         {viewState.type === 'submit' && (
-          <Checkout 
+          <Checkout
             onBack={handleBackToHome}
             onSubmit={handlePaperSubmit}
           />
         )}
+
+        {viewState.type === 'about' && (
+          <AboutPage
+            onBack={handleBackToHome}
+            onNavigate={navigateToPage}
+          />
+        )}
+
+        {viewState.type === 'contact' && (
+          <ContactPage
+            onBack={handleBackToHome}
+          />
+        )}
+
+        {viewState.type === 'terms' && (
+          <TermsPage
+            onBack={handleBackToHome}
+            onNavigate={navigateToPage}
+          />
+        )}
+
+        {viewState.type === 'privacy' && (
+          <PrivacyPage
+            onBack={handleBackToHome}
+            onNavigate={navigateToPage}
+          />
+        )}
+
+        {viewState.type === 'faq' && (
+          <FAQPage
+            onBack={handleBackToHome}
+            onNavigate={navigateToPage}
+          />
+        )}
+
+        {viewState.type === 'how-it-works' && (
+          <HowItWorksPage
+            onBack={handleBackToHome}
+            onNavigate={navigateToPage}
+          />
+        )}
       </main>
 
-      <Footer onLinkClick={handleNavClick} />
+      <Footer onLinkClick={handleNavClick} onNavigate={navigateToPage} />
     </div>
   );
 };

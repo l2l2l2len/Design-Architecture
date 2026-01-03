@@ -2,24 +2,108 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Design Times - Architecture & Innovation</title>
-    <meta name="description" content="Global coverage of architecture, interior design, product innovation, and creative culture." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Primary Meta Tags -->
+    <title>The Design Times - Architecture & Design News</title>
+    <meta name="title" content="The Design Times - Architecture & Design News" />
+    <meta name="description" content="The global authority on architecture, interior design, product innovation, and creative culture. Curated design news from Dezeen, ArchDaily, Wallpaper*, and more. Free, open, no login required." />
+    <meta name="keywords" content="architecture, design, interior design, product design, brutalism, sustainability, green building, design news, Dezeen, ArchDaily, Wallpaper, design magazine" />
+    <meta name="author" content="The Design Times" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thedesigntimes.com/" />
+    <meta property="og:title" content="The Design Times - Architecture & Design News" />
+    <meta property="og:description" content="The global authority on architecture, interior design, product innovation, and creative culture. Curated design news, free and open to all." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=1200" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="The Design Times" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://thedesigntimes.com/" />
+    <meta name="twitter:title" content="The Design Times - Architecture & Design News" />
+    <meta name="twitter:description" content="The global authority on architecture, interior design, product innovation, and creative culture." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=1200" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thedesigntimes.com/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1c1917" />
+    <meta name="msapplication-TileColor" content="#1c1917" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Design Times" />
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "The Design Times",
+      "description": "The global authority on architecture, interior design, product innovation, and creative culture.",
+      "url": "https://thedesigntimes.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://thedesigntimes.com/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Design Times",
+      "url": "https://thedesigntimes.com/",
+      "logo": "https://thedesigntimes.com/logo.png",
+      "description": "The global authority on architecture, interior design, product innovation, and creative culture.",
+      "foundingDate": "2025",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "London, New York, Copenhagen"
+      }
+    }
+    </script>
+
     <style>
       @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
-      
+
+      /* Base styles */
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 120px;
         background-color: #fdfbf7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       body {
-        font-family: 'Libre Baskerville', serif;
+        font-family: 'Libre Baskerville', Georgia, serif;
         color: #1c1917;
+        min-height: 100vh;
+        line-height: 1.6;
       }
-      
+
       /* Masthead Font */
       .font-masthead {
         font-family: 'UnifrakturMaguntia', cursive;
@@ -32,9 +116,32 @@
 
       /* Modern Accents */
       .font-sans-accent {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       }
 
+      /* Accessibility: Focus styles */
+      *:focus-visible {
+        outline: 2px solid #1c1917;
+        outline-offset: 2px;
+      }
+
+      /* Skip link for accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #1c1917;
+        color: #fff;
+        padding: 8px 16px;
+        z-index: 10000;
+        transition: top 0.2s;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+
+      /* Hide scrollbar */
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
@@ -43,15 +150,35 @@
         scrollbar-width: none;
       }
 
+      /* Animations */
       @keyframes fade-in-up {
         0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes slide-up-fade {
+        0% { opacity: 0; transform: translateY(10px); }
         100% { opacity: 1; transform: translateY(0); }
       }
 
       .animate-fade-in-up {
         animation: fade-in-up 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
       }
-      
+
+      .animate-slide-up-fade {
+        animation: slide-up-fade 0.4s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+      }
+
+      /* Reduce motion for users who prefer it */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
       /* Newspaper specific utilities */
       .paper-border {
         border-bottom: 1px solid #1c1917;
@@ -62,11 +189,28 @@
       .double-border-bottom {
         border-bottom: 3px double #1c1917;
       }
-      
-      /* Selection Color update for Design theme (Muted Copper/Clay) */
+
+      /* Selection Color */
       ::selection {
         background-color: #1c1917;
         color: #ca8a04;
+      }
+
+      /* Print styles */
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        body {
+          background: white;
+        }
+      }
+
+      /* Touch target sizes for mobile */
+      @media (pointer: coarse) {
+        button, a, input, select, textarea {
+          min-height: 44px;
+        }
       }
     </style>
   <script type="importmap">
@@ -81,7 +225,18 @@
 </script>
 </head>
   <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+
+    <!-- Noscript fallback -->
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: Georgia, serif;">
+        <h1 style="font-size: 2rem; margin-bottom: 1rem;">The Design Times</h1>
+        <p>JavaScript is required to use The Design Times. Please enable JavaScript in your browser settings.</p>
+      </div>
+    </noscript>
   </body>
 </html>
